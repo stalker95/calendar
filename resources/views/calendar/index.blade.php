@@ -241,7 +241,7 @@ var data_time = [];
 var events = @php echo json_encode($events) @endphp;
 console.log(events);
 @foreach($events as $event)
- data_time.push(new Date('{{ $event->push_event }}'));
+ data_time.push(new Date('{{ $event->data }}'));
 @endforeach
 
 //console.log(data_time);

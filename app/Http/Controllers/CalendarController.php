@@ -7,6 +7,8 @@ use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Event;
+use Carbon\Carbon;
+use DateTime;
 
 class CalendarController extends Controller
 {
@@ -51,6 +53,14 @@ class CalendarController extends Controller
     {
         $data = $request->input();
         $data['user_id'] = Auth::id();
+        $data['push_event'] = (new Carbon($data['push_event']))->format('Y-m-d H:i:s');
+
+        if(Carbon::parse($data['start_data']) > Carbon::parse($data['end_data']) ) {
+            return back()
+               ->withErrors(['msg'=>'Not well datas'])
+               ->withInput();
+        }
+
         $item = (new Event())->create($data);
         //$item->user_id = 1;
         $item->save();
@@ -106,6 +116,8 @@ class CalendarController extends Controller
         }
 
         $data = $request->all();
+        $date = DateTime::createFromFormat('Y-m-d g:i a', $data['push_event']);
+         $data['push_event'] = $date->format('Y-m-d H:i:s');
 
         $result = $event->update($data);
            if ($result) {

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <a href="{{ route('calendar.index') }}">Calendar</a>
                 </div>
 
                 <div class="links">

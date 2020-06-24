@@ -116,7 +116,7 @@
 
 <script>
   //Date range picker
-    $('#reservationdate').datetimepicker({format: 'YYYY-MM-DD hh:mm'});
+    $('#reservationdate').datetimepicker({format: 'YYYY-MM-DD hh:mm A'});
     $('#reservationdate_two').datetimepicker({format: 'YYYY-MM-DD hh:mm'});
     $('#reservationdate_three').datetimepicker({format: 'YYYY-MM-DD hh:mm'});
 </script>

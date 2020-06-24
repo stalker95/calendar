@@ -42,4 +42,10 @@ class Event extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $this->end_data)->day;
     }
+    
+    public function getDataAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->push_event);
+    }
+
 }
